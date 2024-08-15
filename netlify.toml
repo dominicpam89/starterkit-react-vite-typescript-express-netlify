@@ -1,0 +1,22 @@
+[build]
+  # Command to build both the frontend and backend
+  command = "npm run build"
+  
+  # Directory to publish after the frontend is built
+  publish = "dist"
+  
+  # Directory for Netlify functions (where your backend will be deployed)
+  functions = "netlify/functions"
+
+[[redirects]]
+  # Redirect API requests to the serverless function
+  from = "/api/*"
+  to = "/.netlify/functions/server"
+  status = 200
+  force = true
+
+[[redirects]]
+  # Redirect all other requests to React app's index.html for client-side routing
+  from = "/*"
+  to = "/index.html"
+  status = 200
